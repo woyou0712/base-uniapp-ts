@@ -4,6 +4,7 @@
     <view class="text-area">
       <text class="title">{{ title }}</text>
     </view>
+    <uni-datetime-picker v-model="range" type="daterange" />
   </view>
 </template>
 
@@ -12,6 +13,7 @@ import { onLoad, onReady } from "@dcloudio/uni-app";
 import { ref } from "vue";
 import { requestTest } from "./service";
 const title = ref("Hello");
+const range = ref([Date.now(), Date.now() + 1000]);
 
 onLoad(() => {
   requestTest().then((data) => {
@@ -26,6 +28,7 @@ onLoad(() => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   .logo {
     height: 200rpx;
     width: 200rpx;
@@ -34,9 +37,11 @@ onLoad(() => {
     margin-right: auto;
     margin-bottom: 50rpx;
   }
+
   .text-area {
     display: flex;
     justify-content: center;
+
     .title {
       font-size: 36rpx;
       color: #8f8f94;
